@@ -44,14 +44,14 @@ filtered_df = df[(df['sep_kpc'] >= sep_range[0]) & (df['sep_kpc'] <= sep_range[1
 
 
 num_hosts = filtered_df['host_gal'].nunique()
-st.markdown(f"## **Number of host galaxies in range:** `{num_hosts}`")
+st.markdown(f"**Number of host galaxies in range:** `{num_hosts}`")
 
 # Step 4: Build dropdown options with sep_kpc included
 host_rows = filtered_df[['host_gal', 'sep_kpc']]
 host_options = host_rows.drop_duplicates().apply(lambda row: f"{row['host_gal']} (sep: {row['sep_kpc']:.2f} kpc)", axis=1).tolist()
 
 # Step 5: Select host galaxy
-selected_entry = st.selectbox("### 🔭 Select a host galaxy (with sep_kpc):", host_options)
+selected_entry = st.selectbox("# 🔭 Select a host galaxy (with sep_kpc):", host_options)
 
 # Step 6: Extract the actual host name from the selected text
 selected_host = selected_entry.split(" (")[0]
