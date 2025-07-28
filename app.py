@@ -10,7 +10,7 @@ df = pd.read_csv("table_companions_merged_final.csv")
 
 
 # Step 1: Show interactive histogram with range slider
-st.markdown("📊 Histogram of Separation of the pairs")
+st.markdown("📊 Histogram of Separation of the pairs for the study of Tully-Fisher relation")
 fig = px.histogram(df, x='sep_kpc', nbins=30)
 fig.update_layout(
     xaxis_title="Separation (kpc)",
@@ -25,7 +25,8 @@ min_sep = df['sep_kpc'].min()
 max_sep = df['sep_kpc'].max()
 
 # Step 2: Add slider to sidebar (or main area)
-sep_range = st.slider("### 📏 Select separation range (kpc):", 
+st.markdown("# 📏 Select separation range (kpc):")
+sep_range = st.slider("Set the lower and upper sliders of the range (kpc):", 
                       min_value=min_sep, 
                       max_value=max_sep, 
                       value=(min_sep, max_sep), 
@@ -51,7 +52,8 @@ host_rows = filtered_df[['host_gal', 'sep_kpc']]
 host_options = host_rows.drop_duplicates().apply(lambda row: f"{row['host_gal']} (sep: {row['sep_kpc']:.2f} kpc)", axis=1).tolist()
 
 # Step 5: Select host galaxy
-selected_entry = st.selectbox("### 🔭 Select a host galaxy (with sep_kpc):", host_options)
+st.markdown("# 🔭 Select a host galaxy inside above range")
+selected_entry = st.selectbox("In paranthesis the separation of the companion galaxy (kpc)", host_options)
 
 # Step 6: Extract the actual host name from the selected text
 selected_host = selected_entry.split(" (")[0]
@@ -145,6 +147,6 @@ aladin_iframe += mark_gal
 
 
 # Show embedded sky view
-st.markdown("### 🛰️ **Aladin Lite view of the host galaxy**", unsafe_allow_html=True)
+st.markdown("## 🛰️ **Aladin Lite view of the host galaxy with the companion(s) galaxies**", unsafe_allow_html=True)
 st.components.v1.html(aladin_iframe, height=800, width=1800)
 
