@@ -10,7 +10,7 @@ df = pd.read_csv("table_companions_merged_final.csv")
 
 
 # Step 1: Show interactive histogram with range slider
-st.markdown("### 📊 Histogram of Separation (sep_kpc)")
+st.markdown("# 📊 Histogram of Separation (sep_kpc)")
 fig = px.histogram(df, x='sep_kpc', nbins=30)
 fig.update_layout(
     xaxis_title="Separation (kpc)",
@@ -44,7 +44,7 @@ filtered_df = df[(df['sep_kpc'] >= sep_range[0]) & (df['sep_kpc'] <= sep_range[1
 
 
 num_hosts = filtered_df['host_gal'].nunique()
-st.markdown(f"🧮 **Number of host galaxies in range:** `{num_hosts}`")
+st.markdown(f"### **Number of host galaxies in range:** `{num_hosts}`")
 
 # Step 4: Build dropdown options with sep_kpc included
 host_rows = filtered_df[['host_gal', 'sep_kpc']]
@@ -145,6 +145,6 @@ aladin_iframe += mark_gal
 
 
 # Show embedded sky view
-st.markdown("🛰️ **Aladin Lite view of the host galaxy**", unsafe_allow_html=True)
+st.markdown("### 🛰️ **Aladin Lite view of the host galaxy**", unsafe_allow_html=True)
 st.components.v1.html(aladin_iframe, height=800, width=1800)
 
