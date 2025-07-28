@@ -25,7 +25,7 @@ min_sep = df['sep_kpc'].min()
 max_sep = df['sep_kpc'].max()
 
 # Step 2: Add slider to sidebar (or main area)
-sep_range = st.slider("📏 Select separation range (kpc):", 
+sep_range = st.slider("### 📏 Select separation range (kpc):", 
                       min_value=min_sep, 
                       max_value=max_sep, 
                       value=(min_sep, max_sep), 
@@ -51,7 +51,7 @@ host_rows = filtered_df[['host_gal', 'sep_kpc']]
 host_options = host_rows.drop_duplicates().apply(lambda row: f"{row['host_gal']} (sep: {row['sep_kpc']:.2f} kpc)", axis=1).tolist()
 
 # Step 5: Select host galaxy
-selected_entry = st.selectbox("# 🔭 Select a host galaxy (with sep_kpc):", host_options)
+selected_entry = st.selectbox("### 🔭 Select a host galaxy (with sep_kpc):", host_options)
 
 # Step 6: Extract the actual host name from the selected text
 selected_host = selected_entry.split(" (")[0]
