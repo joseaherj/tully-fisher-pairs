@@ -64,7 +64,7 @@ subset = df[df['host_gal'] == selected_host]
 
 # Show companion list
 st.write("🧲 Companion galaxies:")
-st.dataframe(subset[['main_id', 'ra', 'dec','sep_kpc']],  width=1000)
+st.dataframe(subset[['main_id', 'ra', 'dec','sep_kpc', 'radvel_bibcode']],  width=1000)
 
 # Get host coordinates (first row is enough)
 host_ra = subset.iloc[0]['Primary_Ra']
